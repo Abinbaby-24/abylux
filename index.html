@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100d25">
+  <title>ABYLUX — Web, Ideas, Growth</title>
+  <meta name="description" content="ABYLUX creates modern, responsive websites for ambitious businesses.">
+  <style>
+    :root{color-scheme:dark;--nav-h:78px;--purple:#a78bfa;--purple2:#c084fc;--ink:#f5f3ff;--muted:#b4aecb;--line:#ffffff1a;--bg:#0b0916;--soft:#0f0c21;--nav-bg:#100d25}html{background:#0b0916}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+    a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+    header{position:sticky;top:0;z-index:20;background:rgba(16,13,37,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(192,132,252,.18)}
+    .nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:11px;min-width:0}
+    .brand-logo{display:block;width:210px;height:auto;max-height:64px;object-fit:contain;object-position:left center}
+    .navlinks{display:flex;align-items:center;gap:30px;font-size:.91rem;color:#d7d0ea}.navlinks a:hover{color:#d8b4fe}
+    .nav-cta,.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;padding:13px 20px;font-weight:750;transition:.2s}
+    .nav-cta,.btn-primary{background:linear-gradient(110deg,#c084fc,#8b5cf6);color:white;box-shadow:0 10px 24px #8b5cf62b}
+    .nav-cta:hover,.btn:hover{transform:translateY(-2px)}
+    .menu{display:none;border:1px solid rgba(255,255,255,.25);background:transparent;border-radius:12px;padding:10px;color:white}
+    .hero-scroll{position:relative;height:420vh;padding:0}
+    .hero{position:sticky;top:var(--nav-h);height:calc(100vh - var(--nav-h));height:calc(100svh - var(--nav-h));min-height:520px;display:flex;align-items:center;overflow:hidden;background:#100d25;color:white}
+    #heroCanvas{position:absolute;inset:0;width:100%;height:100%;display:block;background:#100d25}
+    .hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,10,30,.84) 0%,rgba(18,12,42,.55) 46%,rgba(18,12,42,.1) 100%),linear-gradient(180deg,rgba(12,10,30,.25),transparent 35%)}
+    .scroll-hint{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:#e9d5ff;transition:opacity .4s}
+    .scroll-hint.hide{opacity:0}.scroll-hint span{width:1px;height:38px;background:linear-gradient(#c084fc,transparent);animation:hint 1.8s ease-in-out infinite}
+    @keyframes hint{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+    @media(prefers-reduced-motion:reduce){.hero-scroll{height:auto}.hero{position:relative;top:0;height:auto;min-height:620px}.scroll-hint span{animation:none}}
+    .hero:after{content:"";position:absolute;inset:auto 0 0;height:110px;background:linear-gradient(transparent,#0b0916)}
+    .hero-inner{position:relative;z-index:1;padding:40px 0 96px;max-width:700px;text-shadow:0 2px 24px rgba(10,6,30,.45)}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:#e9d5ff;text-transform:uppercase;letter-spacing:.18em;font-size:.76rem;font-weight:800}
+    .eyebrow:before{content:"";width:25px;height:2px;background:#c084fc}
+    h1{font-size:clamp(3.2rem,min(7vw,10vh),5.6rem);line-height:.99;letter-spacing:-.065em;margin:22px 0 24px;font-weight:850}
+    h1 span{display:block;color:#d8b4fe}
+    .hero p{font-size:clamp(1rem,2vw,1.18rem);line-height:1.8;color:#e4e0f2;max-width:550px;margin:0 0 30px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:13px}.btn{padding:15px 23px}.btn-outline{border:1px solid #ffffff6b;color:white;background:#ffffff0d}
+    .hero-note{display:flex;align-items:center;gap:10px;margin-top:42px;font-size:.84rem;color:#d7d0ea}.dot{width:8px;height:8px;background:#c084fc;border-radius:50%;box-shadow:0 0 14px #c084fc}
+    section{padding:88px 0}.section-head{text-align:center;max-width:650px;margin:0 auto 42px}.kicker{font-size:.75rem;letter-spacing:.19em;text-transform:uppercase;color:#a78bfa;font-weight:850}
+    h2{font-size:clamp(2rem,4vw,3.1rem);line-height:1.1;letter-spacing:-.045em;margin:13px 0}.section-head p{color:var(--muted);line-height:1.75}h2 em{font-style:normal;color:#c4b5fd}.contact-panel h2 em{color:#f5d0fe}
+    .services{background:var(--soft)}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:linear-gradient(160deg,#181331,#110d26);border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:0 14px 40px #00000040;transition:.25s}.card:hover{border-color:#a78bfa66;transform:translateY(-4px)}
+    .iconbox{width:48px;height:48px;border-radius:15px;background:#8b5cf629;color:#c4b5fd;display:grid;place-items:center;font-size:1.35rem;margin-bottom:20px}
+    .card h3{margin:0 0 10px;font-size:1.1rem}.card p{margin:0;color:var(--muted);line-height:1.7;font-size:.94rem}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:55px}.about-art{min-height:340px;border-radius:28px;overflow:hidden;position:relative;background:linear-gradient(140deg,#21114b,#8b5cf6 55%,#f0abfc);padding:28px;display:flex;align-items:end}
+    .mini-window{width:100%;background:#0d0a22d9;backdrop-filter:blur(8px);color:var(--ink);border:1px solid #ffffff2e;border-radius:18px;padding:22px;box-shadow:0 20px 60px #13052c44}
+    .mini-top{display:flex;gap:5px;margin-bottom:20px}.mini-top i{width:7px;height:7px;border-radius:50%;background:#c4b5fd}
+    .mini-title{font-size:1.55rem;font-weight:850;letter-spacing:-.04em}.mini-line{height:8px;background:#ffffff24;border-radius:10px;margin-top:10px;width:88%}.mini-line.short{width:57%}
+    .about-copy p{color:var(--muted);line-height:1.8}.checklist{list-style:none;padding:0;display:grid;gap:13px;margin:25px 0}.checklist li:before{content:"✓";display:inline-grid;place-items:center;width:23px;height:23px;border-radius:50%;background:#8b5cf633;color:#c4b5fd;font-weight:900;margin-right:10px}
+    .projects{background:#0d0a1f}.project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}.project{border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#130f2a}.project-visual{height:210px;padding:22px;display:flex;align-items:end;background:linear-gradient(135deg,#211047,#7c3aed 58%,#e9d5ff);color:white}.project:nth-child(2) .project-visual{background:linear-gradient(135deg,#19172c,#5550a5,#d8b4fe)}.browser{width:100%;background:#0d0a22e6;color:#f5f3ff;border-radius:12px 12px 0 0;padding:16px}.browser strong{font-size:1.15rem}.browser span{display:block;color:#b4aecb;font-size:.75rem;margin-top:5px}.project-copy{padding:21px}.project-copy h3{margin:0 0 7px}.project-copy p{margin:0;color:var(--muted);font-size:.9rem}
+
+    .pricing{background:radial-gradient(900px 420px at 50% 0,#2a1760 0,transparent 62%),#0b0916;color:white}
+    .pricing .kicker{color:#c4b5fd}.pricing h2{color:white}.pricing .section-head p{color:#b8b3cc}
+    .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+    .plan{position:relative;display:flex;flex-direction:column;border-radius:26px;padding:36px 28px 30px;color:#e9e6f5;border:1px solid var(--bd);background:var(--bg-g);box-shadow:0 26px 60px #00000070,inset 0 1px 0 #ffffff1f;transition:transform .25s,box-shadow .25s}
+    .plan:before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(120deg,var(--sheen),transparent 42%);pointer-events:none;z-index:0}
+    .plan>*:not(.badge){position:relative;z-index:1}
+    .plan:hover{transform:translateY(-6px)}
+    .plan.silver{--bd:#9aa1ad70;--bg-g:linear-gradient(160deg,#30343d 0%,#17191e 55%,#0e0f12 100%);--sheen:#e5e7eb2b;--price:linear-gradient(90deg,#ffffff,#9ca3af);--tick:url("assets/silver-tick.png")}
+    .plan.gold{--bd:#f5c15a8c;--bg-g:linear-gradient(160deg,#3d2f12 0%,#1d1608 55%,#100c04 100%);--sheen:#fcd34d2b;--price:linear-gradient(90deg,#fff0b3,#e0a919);--tick:url("assets/gold-tick.png");box-shadow:0 28px 70px #d9a21b33,0 26px 60px #00000070,inset 0 1px 0 #fde68a40}
+    .plan.diamond{--bd:#a78bfa8c;--bg-g:linear-gradient(160deg,#2e1b70 0%,#150d34 55%,#0a0618 100%);--sheen:#c084fc33;--price:linear-gradient(90deg,#f3e8ff,#a78bfa 55%,#67e8f9);--tick:url("assets/diamond-tick.png")}
+    .plan.featured{transform:translateY(-10px)}.plan.featured:hover{transform:translateY(-16px)}
+    .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(110deg,#fde68a,#d9a21b);color:#2a1d02;font-size:.7rem;font-weight:850;letter-spacing:.12em;text-transform:uppercase;padding:6px 15px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 20px #d9a21b44;z-index:2}
+    .plan-name{margin:0 0 12px}.plan-title-img{display:block;height:46px;width:auto;max-width:100%}
+    .plan-tag{color:#b0abc4;font-size:.9rem;margin:0 0 22px;line-height:1.55}
+    .price{display:flex;align-items:baseline;gap:6px;line-height:1}
+    .price b{font-size:2.9rem;font-weight:850;letter-spacing:-.05em;background:var(--price);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+    .price small{font-size:.85rem;font-weight:600;color:#9b97b0}
+    .plan hr{border:0;border-top:1px solid #ffffff1f;margin:26px 0}
+    .plan ul{list-style:none;padding:0;margin:0 0 30px;display:grid;gap:13px;font-size:.93rem;color:#d8d4e8;flex:1;align-content:start}
+    .plan li{display:flex;gap:11px;line-height:1.5}
+    .plan li:before{content:"";flex:none;width:22px;height:22px;margin-top:0;background:var(--tick) center/contain no-repeat}
+    .plan li.inherit{font-weight:750;color:white}
+    .plan .btn{width:100%;border:0}
+    .plan.silver .btn{background:linear-gradient(110deg,#f3f4f6,#9ca3af);color:#12141a;box-shadow:0 10px 24px #9ca3af30}
+    .plan.gold .btn{background:linear-gradient(110deg,#fde68a,#d9a21b);color:#2a1d02;box-shadow:0 10px 26px #d9a21b44}
+    .plan.diamond .btn{background:linear-gradient(110deg,#c084fc,#6d28d9);color:white;box-shadow:0 10px 26px #7c3aed55}
+    .pricing-note{text-align:center;color:#9b97b0;font-size:.85rem;margin:34px auto 0;max-width:620px;line-height:1.7}
+    .faq-list{max-width:780px;margin:auto;display:grid;gap:12px}
+    .faq-item{border:1px solid var(--line);border-radius:18px;background:#130f2a;overflow:hidden}
+    .faq-item summary{list-style:none;cursor:pointer;padding:20px 24px;font-weight:750;display:flex;justify-content:space-between;align-items:center;gap:16px}
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-item summary:after{content:"+";flex:none;width:28px;height:28px;border-radius:50%;background:#8b5cf62e;color:#c4b5fd;display:grid;place-items:center;font-size:1.2rem;font-weight:700;transition:.2s}
+    .faq-item[open]{border-color:#a78bfa80;box-shadow:0 14px 40px #00000050}.faq-item[open] summary:after{content:"–"}
+    .faq-item p{margin:0;padding:0 24px 22px;color:var(--muted);line-height:1.75}
+    @media(max-width:980px){.plans{grid-template-columns:1fr;max-width:460px;margin:auto}.plan.featured{transform:none;margin-top:10px}}
+    .contact{padding:75px 0}.contact-panel{border-radius:30px;background:linear-gradient(120deg,#2b1558,#6d28d9 65%,#a855f7);color:white;padding:50px;display:flex;justify-content:space-between;align-items:center;gap:28px}.contact-panel h2{margin-top:0}.contact-panel p{color:#eee3ff;line-height:1.7;margin-bottom:0}.contact-panel .btn{background:white;color:#5b21b6;white-space:nowrap}
+    footer{border-top:1px solid var(--line);padding:28px 0;color:#9b97b0;font-size:.85rem}.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:18px}.footer-brand{font-weight:850;letter-spacing:.15em;color:var(--ink)}
+    @media(max-width:800px){.navlinks{display:none;position:absolute;top:78px;left:0;right:0;padding:20px;background:var(--nav-bg);border-bottom:1px solid rgba(255,255,255,.12);flex-direction:column;gap:22px}.navlinks.open{display:flex}.menu{display:block}.nav-cta{display:none}.hero-inner{padding:36px 0 100px}.cards{grid-template-columns:1fr 1fr}.about-grid{grid-template-columns:1fr;gap:32px}.about-art{min-height:280px}.contact-panel{padding:34px;align-items:flex-start;flex-direction:column}}
+    @media(max-width:540px){.wrap{width:min(100% - 30px,1120px)}:root{--nav-h:70px}.nav{height:70px}.navlinks{top:70px}.brand-logo{width:170px;max-height:54px}.hero-inner{padding:28px 0 96px}h1{font-size:3.25rem}.cards,.project-grid{grid-template-columns:1fr}section{padding:66px 0}.section-head{margin-bottom:30px}.contact-panel{padding:27px}.footer-inner{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="ABYLUX home"><img class="brand-logo" src="assets/abylux-logo.png" alt="ABYLUX — Web, Ideas, Growth"></a>
+    <nav class="navlinks" id="navlinks"><a href="#home">Home</a><a href="#services">Services</a><a href="#work">Projects</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+    <a class="nav-cta" href="#contact">Let’s Talk <span>↗</span></a>
+    <button class="menu" id="menu" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+  </div>
+</header>
+<main>
+  <section class="hero-scroll" id="home">
+    <div class="hero">
+    <canvas id="heroCanvas" aria-hidden="true"></canvas><div class="hero-shade"></div>
+    <div class="wrap hero-inner">
+      <div class="eyebrow">Web · Ideas · Growth</div>
+      <h1>Your vision.<span>Our code.</span></h1>
+      <p>I build modern, responsive websites that help businesses stand out, connect with customers, and grow online.</p>
+      <div class="hero-actions"><a class="btn btn-primary" href="#work">Explore My Work <span>↗</span></a><a class="btn btn-outline" href="#contact">Start a Project</a></div>
+      <div class="hero-note"><span class="dot"></span> Thoughtful design. Clean development. Real results.</div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true"><span></span>Scroll</div>
+    </div>
+  </section>
+  <section class="services" id="services">
+    <div class="wrap"><div class="section-head"><div class="kicker">What I do</div><h2>Digital experiences, <em>built for you.</em></h2><p>From a first online presence to a custom digital product, I turn ideas into useful, beautiful websites.</p></div>
+      <div class="cards">
+        <article class="card"><div class="iconbox">✦</div><h3>Business Websites</h3><p>Professional websites that make your brand easier to discover and trust.</p></article>
+        <article class="card"><div class="iconbox">▣</div><h3>Landing Pages</h3><p>Clear, focused pages designed to introduce your offer and encourage action.</p></article>
+        <article class="card"><div class="iconbox">⌘</div><h3>Custom Web Apps</h3><p>Purpose-built web experiences shaped around your workflow and goals.</p></article>
+        <article class="card"><div class="iconbox">▤</div><h3>Portfolio Websites</h3><p>Showcase your work, skills, and story with a memorable online portfolio.</p></article>
+        <article class="card"><div class="iconbox">↗</div><h3>E-commerce</h3><p>Make it easier for customers to explore products and shop online.</p></article>
+        <article class="card"><div class="iconbox">⚙</div><h3>Maintenance & Support</h3><p>Updates, fixes, and improvements to keep your website running smoothly.</p></article>
+      </div>
+    </div>
+  </section>
+  <section id="about">
+    <div class="wrap about-grid">
+      <div class="about-art"><div class="mini-window"><div class="mini-top"><i></i><i></i><i></i></div><div class="mini-title">Make your next idea<br>real on the web.</div><div class="mini-line"></div><div class="mini-line short"></div></div></div>
+      <div class="about-copy"><div class="kicker">Why ABYLUX</div><h2>Small details.<br><em>Big impression.</em></h2><p>ABYLUX is a web development brand focused on creating clean, modern digital experiences. Every project starts with understanding your goals and ends with a website built to work across devices.</p><ul class="checklist"><li>Responsive on mobile, tablet, and desktop</li><li>Modern, brand-focused visual design</li><li>Performance and usability in mind</li><li>Clear communication from start to launch</li></ul><a class="btn btn-primary" href="#contact">Let’s build something <span>↗</span></a></div>
+    </div>
+  </section>
+  <section class="projects" id="work">
+    <div class="wrap"><div class="section-head"><div class="kicker">Selected work</div><h2>A glimpse of <em>what’s possible.</em></h2><p>Replace these sample cards with your real projects, screenshots, and live links.</p></div>
+      <div class="project-grid">
+        <article class="project"><div class="project-visual"><div class="browser"><strong>GlowNearby</strong><span>Beauty & salon booking concept</span></div></div><div class="project-copy"><h3>GlowNearby</h3><p>A modern digital presence for beauty and wellness businesses.</p></div></article>
+        <article class="project"><div class="project-visual"><div class="browser"><strong>Brand / Project Two</strong><span>Business website concept</span></div></div><div class="project-copy"><h3>Your next project</h3><p>Add a short description of another website you have built.</p></div></article>
+      </div>
+    </div>
+  </section>
+  <section class="pricing" id="pricing">
+    <div class="wrap"><div class="section-head"><div class="kicker">Pricing plans</div><h2>Explore <em>plans.</em></h2><p>Simple one-time packages. Pick the one that fits your business today and grow from there.</p></div>
+      <div class="plans">
+        <article class="plan silver"><h3 class="plan-name"><img class="plan-title-img" src="assets/silver.png" alt="Silver"></h3><p class="plan-tag">A clean, professional online presence for small businesses.</p><div class="price"><b>₹9,999</b><small>one-time</small></div><hr>
+          <ul><li>Up to 5 pages (Home, About, Services, Gallery, Contact)</li><li>Responsive on mobile, tablet &amp; desktop</li><li>Contact form &amp; WhatsApp chat button</li><li>Google Maps &amp; social media links</li><li>Basic SEO setup</li><li>Delivery in 3–5 days</li><li>1 round of revisions</li></ul>
+          <a class="btn btn-ghost" href="#contact">Choose Silver</a></article>
+        <article class="plan gold featured"><span class="badge">Most popular</span><h3 class="plan-name"><img class="plan-title-img" src="assets/gold.png" alt="Gold"></h3><p class="plan-tag">A custom-designed website built to attract and convert customers.</p><div class="price"><b>₹14,999</b><small>one-time</small></div><hr>
+          <ul><li class="inherit">Everything in Silver, plus:</li><li>Up to 8 pages with custom design</li><li>WhatsApp appointment request form</li><li>Photo gallery / portfolio section</li><li>Speed &amp; performance optimization</li><li>Instagram feed integration</li><li>Enhanced on-page SEO</li><li>2 rounds of revisions</li></ul>
+          <a class="btn btn-primary" href="#contact">Choose Gold <span>↗</span></a></article>
+        <article class="plan diamond"><h3 class="plan-name"><img class="plan-title-img" src="assets/diamond.png" alt="Diamond"></h3><p class="plan-tag">A full-featured website or web app for ambitious brands.</p><div class="price"><b>₹20,999</b><small>one-time</small></div><hr>
+          <ul><li class="inherit">Everything in Gold, plus:</li><li>Up to 12 pages, fully custom UI</li><li>Advanced online booking system</li><li>Online catalog or e-commerce setup</li><li>Google Analytics &amp; Search Console</li><li>Advanced SEO &amp; schema markup</li><li>30 days of free post-launch support</li><li>Priority support &amp; 3 rounds of revisions</li></ul>
+          <a class="btn btn-ghost" href="#contact">Choose Diamond</a></article>
+      </div>
+      <p class="pricing-note">Domain, hosting, paid third-party services, and optional maintenance are charged separately. Need something custom? <a href="#contact" style="color:#d8b4fe;font-weight:700">Let’s talk.</a></p>
+    </div>
+  </section>
+  <section id="faq">
+    <div class="wrap"><div class="section-head"><div class="kicker">FAQ</div><h2>Questions, <em>answered.</em></h2><p>Everything you might want to know before getting started.</p></div>
+      <div class="faq-list">
+        <details class="faq-item"><summary>How much does a website cost?</summary><p>Our website packages start at ₹3,999, depending on the features and requirements.</p></details>
+        <details class="faq-item"><summary>How long does it take to build a website?</summary><p>A basic website may take 3–5 days, while more complex projects may take longer.</p></details>
+        <details class="faq-item"><summary>Do I need to pay monthly?</summary><p>Website development is a one-time project fee. Domain, hosting, paid services, and optional maintenance may involve additional charges.</p></details>
+        <details class="faq-item"><summary>Can customers book appointments through my website?</summary><p>Yes. Depending on your requirements, we can integrate WhatsApp appointment requests or a more advanced booking system.</p></details>
+        <details class="faq-item"><summary>Can I update my website later?</summary><p>Yes. Updates can be arranged separately or through an optional maintenance plan.</p></details>
+      </div>
+    </div>
+  </section>
+  <section class="contact" id="contact">
+    <div class="wrap"><div class="contact-panel"><div><div class="kicker" style="color:#e9d5ff">Have an idea?</div><h2>Let’s build <em>your website.</em></h2><p>Tell me about your business or project, and let’s make it happen.</p></div><a class="btn" href="mailto:hello@abylux.com?subject=Website%20Project%20Enquiry">Contact ABYLUX ↗</a></div></div>
+  </section>
+</main>
+<footer><div class="wrap footer-inner"><div><span class="footer-brand">ABYLUX</span> <span> · Web · Ideas · Growth</span></div><div>© <span id="year"></span> ABYLUX. Built with purpose.</div></div></footer>
+<script>
+  const menu = document.getElementById('menu');
+  const links = document.getElementById('navlinks');
+  menu.addEventListener('click', () => { const open = links.classList.toggle('open'); menu.setAttribute('aria-expanded', String(open)); });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { links.classList.remove('open'); menu.setAttribute('aria-expanded','false'); }));
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  (function(){
+    const section=document.getElementById('home'),canvas=document.getElementById('heroCanvas'),hint=document.querySelector('.scroll-hint'),header=document.querySelector('header'),stick=section&&section.querySelector('.hero');
+    if(!section||!canvas)return;
+    const ctx=canvas.getContext('2d'),TOTAL=224,frames=new Array(TOTAL),loaded=new Array(TOTAL).fill(false);
+    const src=i=>'assets/hero/f'+String(i+1).padStart(3,'0')+'.jpg';
+    const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let cur=reduce?190:0,target=cur,drawn=-1,raf=null;
+    function draw(i){
+      let k=i;while(k>=0&&!loaded[k])k--;
+      if(k<0){k=i;while(k<TOTAL&&!loaded[k])k++;if(k>=TOTAL)return}
+      if(k===drawn)return;
+      const img=frames[k],cw=canvas.width,ch=canvas.height,s=Math.max(cw/img.naturalWidth,ch/img.naturalHeight),dw=img.naturalWidth*s,dh=img.naturalHeight*s;
+      ctx.drawImage(img,(cw-dw)/2,(ch-dh)/2,dw,dh);drawn=k;
+    }
+    function resize(){const d=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.round(canvas.clientWidth*d);canvas.height=Math.round(canvas.clientHeight*d);drawn=-1;draw(Math.round(cur))}
+    function tick(){cur+=(target-cur)*.18;if(Math.abs(target-cur)<.05)cur=target;draw(Math.round(cur));raf=cur!==target?requestAnimationFrame(tick):null}
+    function onScroll(){
+      const total=section.offsetHeight-stick.offsetHeight,r=section.getBoundingClientRect();
+      const p=Math.min(1,Math.max(0,(header.offsetHeight-r.top)/total));
+      target=p*(TOTAL-1);if(hint)hint.classList.toggle('hide',p>.02);
+      if(!raf)raf=requestAnimationFrame(tick);
+    }
+    function load(i){
+      if(i>=TOTAL)return;
+      const img=new Image();img.decoding='async';
+      img.onload=()=>{frames[i]=img;loaded[i]=true;if(i===0)resize();else draw(Math.round(cur))};
+      img.onerror=()=>{};
+      img.src=src(i);
+    }
+    // load the first frame immediately, then the rest in order, a few at a time
+    const first=reduce?190:0;
+    const order=[first];for(let i=0;i<TOTAL;i++)if(i!==first)order.push(i);
+    let n=0;const lanes=6;
+    function next(){if(n>=order.length)return;const i=order[n++];const img=new Image();img.decoding='async';
+      img.onload=img.onerror=()=>{if(img.naturalWidth){frames[i]=img;loaded[i]=true;if(!(drawn>=0))resize();else draw(Math.round(cur))}next()};
+      img.src=src(i)}
+    for(let l=0;l<lanes;l++)next();
+    window.addEventListener('resize',resize);
+    if(!reduce){window.addEventListener('scroll',onScroll,{passive:true});onScroll()}
+  })();
+</script>
+</body>
+</html>
